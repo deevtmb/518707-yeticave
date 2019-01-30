@@ -1,7 +1,7 @@
 # Личный проект «YetiCave»
 
 * Студент: [Андрей Деев](https://up.htmlacademy.ru/php/8/user/518707).
-* Наставник: `Неизвестно`.
+* Наставник: [Алексей Дивеев](https://htmlacademy.ru/profile/id977693).
 
 ---
 
