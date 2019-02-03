@@ -69,11 +69,11 @@ $ads = [
 
         <nav class="user-menu">
 
-            <?php if ($is_auth === 1): ?>
+            <?php if ($is_auth === 1) { ?>
                 <div class="user-menu__logged">
                     <p><?=$user_name; ?></p>
                 </div>
-            <?php else: ?>
+            <?php } else { ?>
                 <ul class="user-menu__list">
                     <li class="user-menu__item">
                         <a href="#">Регистрация</a>
@@ -82,7 +82,7 @@ $ads = [
                         <a href="#">Вход</a>
                     </li>
                 </ul>
-            <?php endif; ?>
+            <?php } ?>
 
         </nav>
     </div>
@@ -93,11 +93,11 @@ $ads = [
         <h2 class="promo__title">Нужен стафф для катки?</h2>
         <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
         <ul class="promo__list">
-            <?php foreach ($categiroes as $item): ?>
+            <?php foreach ($categiroes as $item) { ?>
                 <li class="promo__item promo__item--boards">
-                    <a class="promo__link" href="pages/all-lots.html"><?= $item ?></a>
+                    <a class="promo__link" href="pages/all-lots.html"><?=$item;?></a>
                 </li>
-            <?php endforeach; ?>
+            <?php } ?>
         </ul>
     </section>
     <section class="lots">
@@ -105,7 +105,7 @@ $ads = [
             <h2>Открытые лоты</h2>
         </div>
         <ul class="lots__list">
-            <?php foreach ($ads as $key => $item): ?>
+            <?php foreach ($ads as $key => $item) { ?>
                 <li class="lots__item lot">
                     <div class="lot__image">
                         <img src="<?=$item['url'];?>" width="350" height="260" alt="<?=$item['title'];?>">
@@ -124,7 +124,7 @@ $ads = [
                         </div>
                     </div>
                 </li>
-            <?php endforeach; ?>
+            <?php } ?>
         </ul>
     </section>
 </main>
@@ -133,11 +133,11 @@ $ads = [
 <footer class="main-footer">
     <nav class="nav">
         <ul class="nav__list container">
-            <?php foreach ($categiroes as $item): ?>
+            <?php foreach ($categiroes as $item) { ?>
                 <li class="nav__item">
-                    <a href="pages/all-lots.html"><?= $item ?></a>
+                    <a href="pages/all-lots.html"><?=$item;?></a>
                 </li>
-            <?php endforeach; ?>
+            <?php } ?>
         </ul>
     </nav>
     <div class="main-footer__bottom container">
