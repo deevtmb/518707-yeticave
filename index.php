@@ -43,6 +43,14 @@ $ads = [
         'url' => 'img/lot-6.jpg'
     ]
 ];
+
+function asCurrency ($number) {
+    ceil($number);
+    $number = number_format($number, 0, '.',  ' ');
+    $number .= ' <b class="rub">р</b>';
+
+    return $number;
+};
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -116,7 +124,7 @@ $ads = [
                         <div class="lot__state">
                             <div class="lot__rate">
                                 <span class="lot__amount">Стартовая цена</span>
-                                <span class="lot__cost"><?=$item['price'];?><b class="rub">р</b></span>
+                                <span class="lot__cost"><?= asCurrency($item['price']) ;?></span>
                             </div>
                             <div class="lot__timer timer">
                                 12:23
