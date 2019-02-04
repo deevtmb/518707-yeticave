@@ -44,10 +44,10 @@ $ads = [
     ]
 ];
 
-function change_number ($number) {
+function asCurrency ($number) {
     ceil($number);
     $number = number_format($number, 0, '.',  ' ');
-    $number .= '₽';
+    $number .= ' <b class="rub">р</b>';
 
     return $number;
 };
@@ -124,7 +124,7 @@ function change_number ($number) {
                         <div class="lot__state">
                             <div class="lot__rate">
                                 <span class="lot__amount">Стартовая цена</span>
-                                <span class="lot__cost"><?= change_number($item['price']) ;?></span>
+                                <span class="lot__cost"><?= asCurrency($item['price']) ;?></span>
                             </div>
                             <div class="lot__timer timer">
                                 12:23
