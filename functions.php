@@ -48,10 +48,9 @@ function asCurrency($number)
 function timeLeft($timeEnd)
 {
     $secsLeft = strtotime($timeEnd) - time();
-    $minutesLeft = floor(($secsLeft % 3600) / 60);
-    $hoursLeft = floor($secsLeft / 3600);
+    $timeLeft = gmdate('H:i', $secsLeft);
 
-    return $hoursLeft . ':' . $minutesLeft;
+    return $timeLeft;
 }
 
 ;
