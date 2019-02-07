@@ -39,4 +39,18 @@ function asCurrency($number)
     return $number;
 }
 
+/**
+ * Функция возвращает время до конца аукциона
+ *
+ * @param string $timeEnd
+ * @return string
+ */
+function timeLeft($timeEnd)
+{
+    $secsLeft = strtotime($timeEnd) - time();
+    $timeLeft = gmdate('H:i', $secsLeft);
+
+    return $timeLeft;
+}
+
 ;

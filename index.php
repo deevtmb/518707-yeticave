@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('Europe/Moscow');
 
 require('data.php');
 require('functions.php');
