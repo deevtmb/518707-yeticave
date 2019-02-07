@@ -28,7 +28,7 @@
                             <span class="lot__cost"><?= asCurrency($item['price']) ;?></span>
                         </div>
                         <div class="lot__timer timer">
-                            12:23
+                            <?= timeLeft($lotTimeEnd); ?>
                         </div>
                     </div>
                 </div>

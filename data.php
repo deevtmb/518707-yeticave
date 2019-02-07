@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('Europe/Moscow');
 
 $isAuth = rand(0, 1);
 $userName = 'Андрей';
@@ -43,3 +44,5 @@ $products = [
         'url' => 'img/lot-6.jpg'
     ]
 ];
+
+$lotTimeEnd = 'tomorrow';

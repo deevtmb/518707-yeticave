@@ -5,6 +5,7 @@ require('functions.php');
 
 $pageContent = includeTemplate('index.php', [
     'products' => $products,
+    'lotTimeEnd' => $lotTimeEnd,
     'categories' => $categories
 ]);
 
