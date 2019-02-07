@@ -4,7 +4,7 @@ require('data.php');
 require('functions.php');
 
 $pageContent = includeTemplate('index.php', [
-    'ads' => $ads,
+    'products' => $products,
     'categories' => $categories
 ]);
 
@@ -14,6 +14,6 @@ $layoutContent = includeTemplate('layout.php', [
     'isAuth' => $isAuth,
     'userName' => $userName,
     'categories' => $categories
-    ]);
+]);
 
 print($layoutContent);
