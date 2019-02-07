@@ -17,7 +17,7 @@
         <?php foreach ($products as $key => $item) { ?>
             <li class="lots__item lot">
                 <div class="lot__image">
-                    <img src="<?=$item['url'];?>" width="350" height="260" alt=<?=htmlspecialchars($item['title']);?>>
+                    <img src="<?=htmlspecialchars($item['url']);?>" width="350" height="260" alt=<?=htmlspecialchars($item['title']);?>>
                 </div>
                 <div class="lot__info">
                     <span class="lot__category"><?=htmlspecialchars($item['category']);?></span>
@@ -28,7 +28,7 @@
                             <span class="lot__cost"><?= asCurrency($item['price']) ;?></span>
                         </div>
                         <div class="lot__timer timer">
-                            <?= timeLeft($lotTimeEnd); ?>
+                            <?= htmlspecialchars(timeLeft($item['leave'])); ?>
                         </div>
                     </div>
                 </div>
