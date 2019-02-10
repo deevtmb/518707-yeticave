@@ -12,6 +12,7 @@ CREATE TABLE categories (
 CREATE TABLE products (
   id INT AUTO_INCREMENT PRIMARY KEY,
   user_id INT,
+  winner_id INT,
   category_id INT,
   date_create TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   date_end TIMESTAMP,
@@ -34,8 +35,6 @@ CREATE TABLE rates (
 
 CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  product_id INT,
-  rate_id INT,
   reg_date TIMESTAMP,
   email CHAR(100),
   name CHAR(50),
@@ -45,3 +44,15 @@ CREATE TABLE users (
 );
 
 CREATE UNIQUE INDEX email ON users(email);
+
+ALTER TABLE products ADD FOREIGN KEY (user_id) REFERENCES users(id)
+ON DELETE CASCADE;
+ALTER TABLE products ADD FOREIGN KEY (winner_id) REFERENCES users(id)
+ON DELETE CASCADE;
+ALTER TABLE products ADD FOREIGN KEY (category_id) REFERENCES categories(id)
+ON DELETE CASCADE;
+
+ALTER TABLE rates ADD FOREIGN KEY (user_id) REFERENCES users(id)
+ON DELETE CASCADE;
+ALTER TABLE rates ADD FOREIGN KEY (product_id) REFERENCES products(id)
+ON DELETE CASCADE;
