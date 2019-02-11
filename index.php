@@ -1,12 +1,16 @@
 <?php
 date_default_timezone_set('Europe/Moscow');
 
+$isAuth = rand(0, 1);
+$config = include('config/config.php');
+
 require('data.php');
 require('functions.php');
 
 $pageContent = includeTemplate('index.php', [
     'products' => $products,
-    'categories' => $categories
+    'categories' => $categories,
+    'config'=>$config
 ]);
 
 $layoutContent = includeTemplate('layout.php', [
@@ -14,7 +18,8 @@ $layoutContent = includeTemplate('layout.php', [
     'title' => 'YetiCave - Главная страница',
     'isAuth' => $isAuth,
     'userName' => $userName,
-    'categories' => $categories
+    'categories' => $categories,
+    'config'=>$config
 ]);
 
 print($layoutContent);

@@ -6,7 +6,7 @@ USE yeticave;
 
 CREATE TABLE categories (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  name CHAR(50)
+  name CHAR(50) UNIQUE
 );
 
 CREATE TABLE products (
@@ -38,7 +38,7 @@ CREATE TABLE users (
   reg_date TIMESTAMP,
   email CHAR(100),
   name CHAR(50),
-  password CHAR(50),
+  password CHAR(255),
   avatar_url CHAR(100),
   contacts CHAR(255)
 );

@@ -30,11 +30,15 @@ function includeTemplate($name, $data)
  * @param $number
  * @return string
  */
-function asCurrency($number)
+function asCurrency($number, $config, $currency = 'rub')
 {
+    if (!isset ($config['currency'][$currency])) {
+        return $currency . ' not found';
+    }
+
     ceil($number);
     $number = number_format($number, 0, '.', ' ');
-    $number .= ' <b class="rub">р</b>';
+    $number .= $config['currency'][$currency];
 
     return $number;
 }
@@ -53,4 +57,3 @@ function timeLeft($timeEnd)
     return $timeLeft;
 }
 
-;
