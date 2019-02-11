@@ -7,9 +7,9 @@ VALUES ('Доски и лыжи'), ('Крепления'), ('Ботинки'), (
 -- Добавление пользователей
 INSERT INTO users(reg_date, email, name, password, avatar_url, contacts)
 VALUES
-(NOW(), 'mymail@mail.ru', 'User1', 'qwerty', 'avatar-1.jpg', '891234567890'),
-(NOW(), 'mail@gmail.com', 'User2', '123456', 'avatar-2.jpg', 'Телеграмм @user'),
-(NOW(), 'user3@gmail.com', 'User3', '654321', 'avatar-3.jpg', NULL);
+(NOW(), 'mymail@mail.ru', 'User1', '$2a$04$1BbNvlB6/ai4SBbjgw6pT.dkLqIyGMpCbodHw3irv7/8IyU0NCzhq', 'avatar-1.jpg', '891234567890'),
+(NOW(), 'mail@gmail.com', 'User2', '$2a$04$OinTDOqS37jqUN2oFNLt/usCz5JJRFGzeyhO0Ce81ngs.0B4XSLAW', 'avatar-2.jpg', 'Телеграмм @user'),
+(NOW(), 'user3@gmail.com', 'User3', '$2a$04$7kRzCRngEtjA3whHhTQRGeeDB4V2Xwdzt0egdfjfT6YMMvluRHWIS', 'avatar-3.jpg', NULL);
 
 -- Добавление списка объявлений
 INSERT INTO products(user_id, winner_id, category_id, date_create, date_end, name, description, img_url, price, price_step)
@@ -26,12 +26,14 @@ VALUES
 (3, 1, TIMESTAMP('2019-02-08'), 31000);
 
 -- Запрос списка категорий
-SELECT name FROM categories;
+SELECT * FROM categories;
 
 -- Запрос лотов
-SELECT p.name, price, img_url, price_step, c.name, p.id, winner_id
-FROM products p JOIN categories c ON p.category_id = c.id
-WHERE winner_id is NULL
+SELECT p.name, u.name, price, img_url, price_step, c.name, p.id, date_end
+FROM products p
+JOIN categories c ON p.category_id = c.id
+JOIN users u ON p.user_id = u.id
+WHERE date_end > NOW()
 ORDER BY p.id DESC;
 
 -- Показ лота по id
