@@ -6,7 +6,7 @@ USE yeticave;
 
 CREATE TABLE categories (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  name CHAR(50)
+  name CHAR(50) UNIQUE 
 );
 
 CREATE TABLE products (
