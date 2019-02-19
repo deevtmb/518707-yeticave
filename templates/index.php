@@ -4,7 +4,7 @@
     <ul class="promo__list">
         <?php foreach ($categories as $item) { ?>
             <li class="promo__item promo__item--boards">
-                <a class="promo__link" href="pages/all-lots.html"><?=$item;?></a>
+                <a class="promo__link" href="pages/all-lots.html"><?=$item['name'];?></a>
             </li>
         <?php } ?>
     </ul>
@@ -28,7 +28,7 @@
                             <span class="lot__cost"><?= asCurrency($item['price'], $config) ;?></span>
                         </div>
                         <div class="lot__timer timer">
-                            <?= htmlspecialchars(timeLeft($item['leave'])); ?>
+                            <?= htmlspecialchars(timeLeft($item['date_end'])); ?>
                         </div>
                     </div>
                 </div>
