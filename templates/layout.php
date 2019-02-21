@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title><?= $title; ?></title>
+    <title><?= $config['site_name'] ?></title>
     <link href="css/normalize.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 </head>
@@ -50,7 +50,7 @@
         <ul class="nav__list container">
             <?php foreach ($categories as $item) { ?>
                 <li class="nav__item">
-                    <a href="pages/all-lots.html"><?=$item;?></a>
+                    <a href="pages/all-lots.html"><?=$item['name'];?></a>
                 </li>
             <?php } ?>
         </ul>

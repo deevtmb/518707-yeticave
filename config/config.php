@@ -3,13 +3,14 @@ return [
 
     // Доступ к БД
     'db' => [
-        'name' => '',
-        'pass' => '',
-        'host' => ''
+        'name' => 'yeticave',
+        'user' => 'root',
+        'pass' => 'pass',
+        'host' => 'localhost'
     ],
 
     // Название сайта
-    'site_name' => 'Yeti Cave - Главная страница',
+    'site_name' => 'Yeti Cave - Главная страница!',
 
     // Список поддерживаемых валют
     'currency' => [

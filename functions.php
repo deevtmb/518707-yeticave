@@ -52,8 +52,37 @@ function asCurrency($number, $config, $currency = 'rub')
 function timeLeft($timeEnd)
 {
     $secsLeft = strtotime($timeEnd) - time();
-    $timeLeft = gmdate('H:i', $secsLeft);
+    $timeLeft = gmdate('j ' . 'дн. ' . 'H:i', $secsLeft);
 
     return $timeLeft;
 }
 
+
+/**
+ * @param $sql query
+ * @param $link database connect
+ * @return array|null
+ */
+function getDataAsArray($link, $sql)
+{
+    if ($link == false) {
+        print('Ошибка подключения: ' . mysqli_connect_error());
+
+    } else {
+        mysqli_set_charset($link, 'utf8');
+
+        require_once('mysql_helper.php');
+        $stmt = db_get_prepare_stmt($link, $sql);
+
+        mysqli_stmt_execute($stmt);
+
+        $result = mysqli_stmt_get_result($stmt);
+
+        if (!$result) {
+            $error = mysqli_error($link);
+            print("Ошибка MySQL: " . $error);
+        }
+
+        return mysqli_fetch_all($result, MYSQLI_ASSOC);
+    }
+}
