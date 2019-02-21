@@ -57,26 +57,32 @@ function timeLeft($timeEnd)
     return $timeLeft;
 }
 
+
 /**
  * @param $sql query
+ * @param $link database connect
  * @return array|null
  */
-function getData($sql)
+function getDataAsArray($link, $sql)
 {
-    $con = mysqli_connect('localhost', 'root', 'pass', 'yeticave');
-    if ($con == false) {
+    if ($link == false) {
         print('Ошибка подключения: ' . mysqli_connect_error());
 
     } else {
-        mysqli_set_charset($con, 'utf8');
-        $result = mysqli_query($con, $sql);
+        mysqli_set_charset($link, 'utf8');
+
+        require_once('mysql_helper.php');
+        $stmt = db_get_prepare_stmt($link, $sql);
+
+        mysqli_stmt_execute($stmt);
+
+        $result = mysqli_stmt_get_result($stmt);
 
         if (!$result) {
-            $error = mysqli_error($con);
+            $error = mysqli_error($link);
             print("Ошибка MySQL: " . $error);
         }
 
-        $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        return $data;
+        return mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
 }
