@@ -18,5 +18,5 @@ return [
     ],
 
     //страница с ошибкой
-    'error_page'=>'pages/404.php'
+    'error_page' => '404.php'
 ];

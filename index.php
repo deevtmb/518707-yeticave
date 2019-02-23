@@ -8,7 +8,7 @@ $link = mysqli_connect($config['db']['host'], $config['db']['user'], $config['db
 
 $categoriesSql = 'SELECT name FROM categories';
 
-$productsSql = 'SELECT p.name as title, price, img_url as url, c.name as category, p.id, DATE(date_end) as date_end
+$productsSql = 'SELECT p.id as id, p.name as title, price, img_url as url, c.name as category, DATE(date_end) as date_end
 FROM products p
 JOIN categories c ON p.category_id = c.id
 ORDER BY p.id DESC';
@@ -27,7 +27,6 @@ $pageContent = includeTemplate('index.php', [
 
 $layoutContent = includeTemplate('layout.php', [
     'content' => $pageContent,
-    'title' => 'YetiCave - Главная страница',
     'isAuth' => $isAuth,
     'userName' => $userName,
     'categories' => $categories,

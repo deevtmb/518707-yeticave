@@ -63,7 +63,7 @@ function timeLeft($timeEnd)
  * @param $link database connect
  * @return array|null
  */
-function getDataAsArray($link, $sql)
+function getDataAsArray($link, $sql, $data = [])
 {
     if ($link == false) {
         print('Ошибка подключения: ' . mysqli_connect_error());
@@ -72,7 +72,7 @@ function getDataAsArray($link, $sql)
         mysqli_set_charset($link, 'utf8');
 
         require_once('mysql_helper.php');
-        $stmt = db_get_prepare_stmt($link, $sql);
+        $stmt = db_get_prepare_stmt($link, $sql, $data);
 
         mysqli_stmt_execute($stmt);
 
