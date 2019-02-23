@@ -16,19 +16,21 @@ FROM products p
 JOIN categories c ON p.category_id = c.id
 WHERE p.id = ?';
 
-$productId = $_GET['id'] ?? header('Location: http://localhost/' . $config['error_page']);
+$productId = $_GET['id'] ?? '';
 
 $product = getDataAsArray($link, $productSql, [$productId]);
 
-if (!$product) {
-    header('Location: http://localhost/' . $config['error_page']);
+if (!$product || !$productId) {
+    $pageContent = includeTemplate('404.php', [
+        'categories' => $categories
+    ]);
+} else {
+    $pageContent = includeTemplate('lot.php', [
+        'categories' => $categories,
+        'product' => $product,
+        'config' => $config
+    ]);
 }
-
-$pageContent = includeTemplate('lot.php', [
-    'categories' => $categories,
-    'product' => $product,
-    'config' => $config
-]);
 
 $layoutContent = includeTemplate('layout.php', [
     'content' => $pageContent,
