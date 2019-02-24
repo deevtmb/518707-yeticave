@@ -12,7 +12,7 @@ CREATE TABLE categories (
 CREATE TABLE products (
   id INT AUTO_INCREMENT PRIMARY KEY,
   user_id INT,
-  winner_id INT,
+  winner_id INT DEFAULT NULL,
   category_id INT,
   date_create TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   date_end TIMESTAMP,
