@@ -17,6 +17,5 @@ return [
         'rub' => ' <b class="rub">р</b>'
     ],
 
-    //страница с ошибкой
-    'error_page' => '404.php'
+    'upload_dir' => 'img/'
 ];
