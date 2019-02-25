@@ -86,3 +86,23 @@ function getDataAsArray($link, $sql, $data = [])
         return mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
 }
+
+/**
+ * Проверяет, что переданная дата соответствует формату ГГГГ-ММ-ДД
+ *
+ * checkdate ( int $month , int $day , int $year )
+ * @param string $date строка с датой
+ * @return bool
+ */
+function checkDateFormat($date) {
+
+    $result = false;
+    $regexp = '/(\d{4})\-(\d{2})\-(\d{2})/m';
+    if (preg_match($regexp, $date, $parts) && count($parts) == 4) {
+        $mounth = $parts[2];
+        $day= $parts[3];
+        $year = $parts[1];
+        $result = checkdate($mounth, $day, $year);
+    }
+    return $result;
+}

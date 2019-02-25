@@ -9,7 +9,7 @@
         </ul>
     </nav>
 
-    <?php $classname = isset($errors) ? 'form--invalid' : '';?>
+    <?php $classname = (isset($errors) && count($errors)) ? 'form--invalid' : '';?>
 
     <form class="form form--add-lot container <?= $classname; ?>" action="add-lot.php" method="post" enctype="multipart/form-data">
         <h2>Добавление лота</h2>
@@ -30,15 +30,13 @@
                 <label for="category">Категория</label>
                 <select id="category" name="category" required>
                     <option>Выберите категорию</option>
-
                     <?php foreach ($categories as $item) {
-                        $selected = '';
-                        if (isset($products['category'])) {
-                            if ($products['category'] === $item['id']) {
+                      $selected = '';
+                        if (isset($product['category'])) {
+                            if ($product['category'] == $item['id']) {
                                 $selected = 'selected';
                             }
-                        }
-                        ;?>
+                        } ?>
                         <option value='<?= $item['id'] ;?>' <?= $selected ;?>><?= $item['name']; ?></option>
                     <?php } ?>
                 </select>
@@ -83,7 +81,7 @@
             <?php $classname = isset($errors['price_step']) ? 'form__item--invalid' : '';
             $value = isset($product['price_step']) ? $product['price_step'] : ''; ?>
 
-            <div class="form__item form__item--small">
+            <div class="form__item form__item--small <?= $classname ;?>">
                 <label for="lot-step">Шаг ставки</label>
                 <input id="lot-step" type="number" name="price_step" placeholder="0" value="<?= $value ;?>" required>
                 <span class="form__error"><?= $errors['price_step']; ?></span>
@@ -92,7 +90,7 @@
             <?php $classname = isset($errors['end_date']) ? 'form__item--invalid' : '';
             $value = isset($product['end_date']) ? $product['end_date'] : ''; ?>
 
-            <div class="form__item">
+            <div class="form__item <?= $classname ;?>">
                 <label for="lot-date">Дата окончания торгов</label>
                 <input class="form__input-date" id="lot-date" type="date" name="end_date" value="<?= $value ;?>" required>
                 <span class="form__error"><?= $errors['end_date']; ?></span>
