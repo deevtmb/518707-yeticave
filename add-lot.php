@@ -8,9 +8,10 @@ $config = include('config/config.php');
 $isAuth = rand(0, 1);
 $link = mysqli_connect($config['db']['host'], $config['db']['user'], $config['db']['pass'], $config['db']['name']);
 
-$categoriesSql = 'SELECT name FROM categories';
+$categoriesSql = 'SELECT id, name FROM categories';
 $categories = getDataAsArray($link, $categoriesSql);
 
+print_r($categories);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $product = $_POST;
@@ -35,8 +36,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     foreach ($number as $field) {
-        if (!is_int($_POST[$field]) || ($_POST[$field] <= 0)) {
-            $errors[$field] = 'Необходимо указать число';
+        if (isset($_POST[$field])) {
+            if (!is_int($_POST[$field]) || ($_POST[$field] <= 0)) {
+                $errors[$field] = 'Необходимо указать число';
+            }
         }
     }
 
@@ -61,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (isset($_POST['end_date'])) {
         if (strtotime('tomorrow') > strtotime($_POST['end_date'])) {
-            $errors['end_date'] = 'Мнимиум 1 день к текущей дате';
+            $errors['end_date'] = 'Минимиум 1 день к текущей дате';
         }
     }
 

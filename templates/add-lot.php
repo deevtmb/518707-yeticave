@@ -34,11 +34,12 @@
                     <?php foreach ($categories as $item) {
                         $selected = '';
                         if (isset($products['category'])) {
-                            if ($products['category'] === $item['name']) {
+                            if ($products['category'] === $item['id']) {
                                 $selected = 'selected';
                             }
-                        }?>
-                        <option <?= $selected ;?>><?= $item['name']; ?></option>
+                        }
+                        ;?>
+                        <option value='<?= $item['id'] ;?>' <?= $selected ;?>><?= $item['name']; ?></option>
                     <?php } ?>
                 </select>
                 <span class="form__error"><?= $errors['category']; ?></span>
