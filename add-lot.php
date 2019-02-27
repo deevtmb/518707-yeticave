@@ -1,20 +1,5 @@
 <?php
-date_default_timezone_set('Europe/Moscow');
-
-require('data.php');
-require('functions.php');
-$config = include('config/config.php');
-
-$isAuth = rand(0, 1);
-$link = mysqli_connect(
-    $config['db']['host'],
-    $config['db']['user'],
-    $config['db']['pass'],
-    $config['db']['name']
-);
-
-$categoriesSql = 'SELECT id, name FROM categories';
-$categories = getDataAsArray($link, $categoriesSql);
+require('init.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $product = $_POST;
@@ -49,23 +34,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (!empty($_FILES['photo']['name'])) {
         $tmp_name = $_FILES['photo']['tmp_name'];
-        $path = uniqid().$_FILES['photo']['name'];
+        $path = uniqid();
 
         $finfo = finfo_open(FILEINFO_MIME_TYPE);
         $file_type = finfo_file($finfo, $tmp_name);
 
+        if ($file_type == 'image/jpeg' || $file_type == 'image/png') {
 
-//        if ($file_type != 'image/jpeg' || $file_type) {
-//            $errors['photo'] = 'Загрузите картинку в формате JPEG или PNG';
-//        } else {
-//            move_uploaded_file($tmp_name, $config['upload_dir'] . $path);
-//            $product['photo'] = $config['upload_dir'] . $path;
-//        }
+            $file_extension = ($file_type == 'image/jpeg') ? '.jpg' : '.png';
 
-        if($file_type == 'image/jpeg' || $file_type =='image/png'){
             move_uploaded_file($tmp_name, $config['upload_dir'] . $path);
-            $product['photo'] = $config['upload_dir'] . $path;
-        }else{
+            $product['photo'] = $config['upload_dir'] . $path . $file_extension;
+        } else {
             $errors['photo'] = 'Загрузите картинку в формате JPEG или PNG';
         }
     }
@@ -96,7 +76,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 (user_id, category_id, date_create, date_end, name, description, img_url, price, price_step) 
 VALUES (2, ?, NOW(), TIMESTAMP(?), ?, ?, ?, ?, ?)';
 
-//        $file = $product['photo'] ?? null;
         $stmt = db_get_prepare_stmt($link, $productAddSql, [
             $product['category'],
             $product['end_date'],
@@ -117,7 +96,6 @@ VALUES (2, ?, NOW(), TIMESTAMP(?), ?, ?, ?, ?, ?)';
             $pageContent = includeTemplate('add-lot.php', [
                 'product' => $product,
                 'errors' => $errors,
-                'fields' => $fields,
                 'categories' => $categories
             ]);
         }
