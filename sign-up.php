@@ -1,26 +1,13 @@
 <?php
-date_default_timezone_set('Europe/Moscow');
+require('init.php');
 
-require('data.php');
-require('functions.php');
-$config = include('config/config.php');
-
-$isAuth = rand(0, 1);
-$link = mysqli_connect(
-    $config['db']['host'],
-    $config['db']['user'],
-    $config['db']['pass'],
-    $config['db']['name']
-);
-
-$categoriesSql = 'SELECT id, name FROM categories';
-$categories = getDataAsArray($link, $categoriesSql);
+$user = [];
+$errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user = $_POST;
 
     $required = ['email', 'password', 'name', 'contacts'];
-    $errors = [];
 
     foreach ($required as $field) {
         if (empty($_POST[$field])) {
@@ -39,15 +26,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $finfo = finfo_open(FILEINFO_MIME_TYPE);
         $file_type = finfo_file($finfo, $tmp_name);
 
-        var_dump($file_type);
-
         if ($file_type == 'image/jpeg' || $file_type == 'image/png') {
-            $file_extension = '';
-            if ($file_type == 'image/jpeg') {
-                $file_extension = '.jpg';
-            } else {
-                $file_extension = '.png';
-            }
+
+            $file_extension = ($file_type == 'image/jpeg') ? '.jpg' : '.png';
+
             move_uploaded_file($tmp_name, $config['upload_dir'] . $path . $file_extension);
             $user['avatar'] = $config['upload_dir'] . $path . $file_extension;
         } else {
@@ -83,27 +65,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($res) {
             header("Location: /index.php");
             exit();
-        } else {
-            {
-                $pageContent = includeTemplate('sign-up.php', [
-                    'user' => $user,
-                    'categories' => $categories
-                ]);
-            }
         }
-    } else {
-        $pageContent = includeTemplate('sign-up.php', [
-            'user' => $user,
-            'errors' => $errors,
-            'categories' => $categories
-        ]);
     }
-
-} else {
-    $pageContent = includeTemplate('sign-up.php', [
-        'categories' => $categories
-    ]);
 }
+
+$pageContent = includeTemplate('sign-up.php', [
+    'user' => $user,
+    'errors' => $errors,
+    'categories' => $categories
+]);
 
 $layoutContent = includeTemplate('layout.php', [
     'content' => $pageContent,

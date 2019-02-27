@@ -1,27 +1,12 @@
 <?php
-date_default_timezone_set('Europe/Moscow');
-
-require('data.php');
-require('functions.php');
-$config = include('config/config.php');
-
-$isAuth = rand(0, 1);
-$link = mysqli_connect(
-    $config['db']['host'],
-    $config['db']['user'],
-    $config['db']['pass'],
-    $config['db']['name']
-);
-
-$categoriesSql = 'SELECT name FROM categories';
-$categories = getDataAsArray($link, $categoriesSql);
-
+require('init.php');
+$errors = [];
+$userLogin = [];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $userLogin = $_POST;
 
     $required = ['email', 'password'];
-    $errors = [];
 
     foreach ($required as $field) {
         if (empty($_POST[$field])) {
@@ -49,22 +34,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors['email'] = 'Пользователь с таким email не зарегестрирован';
     }
 
-    if (count($errors)) {
-        $pageContent = includeTemplate('login.php', [
-            'categories' => $categories,
-            'userLogin' => $userLogin,
-            'errors' => $errors
-        ]);
-    } else {
+    if (!count($errors)) {
         header("Location: /index.php");
         exit();
     }
-
-} else {
-    $pageContent = includeTemplate('login.php', [
-        'categories' => $categories
-    ]);
 }
+
+$pageContent = includeTemplate('login.php', [
+    'categories' => $categories,
+    'errors' => $errors,
+    'userLogin' => $userLogin
+]);
+
 
 $layoutContent = includeTemplate('layout.php', [
     'content' => $pageContent,

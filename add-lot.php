@@ -1,20 +1,5 @@
 <?php
-date_default_timezone_set('Europe/Moscow');
-
-require('data.php');
-require('functions.php');
-$config = include('config/config.php');
-
-$isAuth = rand(0, 1);
-$link = mysqli_connect(
-    $config['db']['host'],
-    $config['db']['user'],
-    $config['db']['pass'],
-    $config['db']['name']
-);
-
-$categoriesSql = 'SELECT id, name FROM categories';
-$categories = getDataAsArray($link, $categoriesSql);
+require('init.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $product = $_POST;
@@ -55,12 +40,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $file_type = finfo_file($finfo, $tmp_name);
 
         if ($file_type == 'image/jpeg' || $file_type == 'image/png') {
-            $file_extension = '';
-            if ($file_type == 'image/jpeg') {
-                $file_extension = '.jpg';
-            } else {
-                $file_extension = '.png';
-            }
+
+            $file_extension = ($file_type == 'image/jpeg') ? '.jpg' : '.png';
+
             move_uploaded_file($tmp_name, $config['upload_dir'] . $path);
             $product['photo'] = $config['upload_dir'] . $path . $file_extension;
         } else {
