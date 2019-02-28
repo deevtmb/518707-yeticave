@@ -1,5 +1,12 @@
 <?php
+session_start();
+
 require('init.php');
+
+if (!isset($_SESSION['user'])) {
+    http_response_code(403);
+    exit();
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $product = $_POST;
@@ -108,8 +115,6 @@ VALUES (2, ?, NOW(), TIMESTAMP(?), ?, ?, ?, ?, ?)';
 
 $layoutContent = includeTemplate('layout.php', [
     'content' => $pageContent,
-    'isAuth' => $isAuth,
-    'userName' => $userName,
     'categories' => $categories,
     'config' => $config
 ]);

@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require('init.php');
 
 $productSql = 'SELECT p.id as id, p.name as title, description, price, price_step, img_url as url, c.name as category, DATE(date_end) as date_end
@@ -24,8 +26,6 @@ if (!$product || !$productId) {
 
 $layoutContent = includeTemplate('layout.php', [
     'content' => $pageContent,
-    'isAuth' => $isAuth,
-    'userName' => $userName,
     'categories' => $categories,
     'config' => $config
 ]);

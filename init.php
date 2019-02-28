@@ -5,7 +5,6 @@ require('data.php');
 require('functions.php');
 $config = include('config/config.php');
 
-$isAuth = rand(0, 1);
 $link = mysqli_connect(
     $config['db']['host'],
     $config['db']['user'],

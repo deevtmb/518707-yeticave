@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require('init.php');
 $errors = [];
 $userLogin = [];
@@ -49,8 +51,6 @@ $pageContent = includeTemplate('login.php', [
 
 $layoutContent = includeTemplate('layout.php', [
     'content' => $pageContent,
-    'isAuth' => $isAuth,
-    'userName' => $userName,
     'categories' => $categories,
     'config' => $config
 ]);
