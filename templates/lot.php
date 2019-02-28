@@ -62,7 +62,7 @@
                             <tr class="history__item">
                                 <td class="history__name"><?= $rate['user'] ;?></td>
                                 <td class="history__price"><?= $rate['price'] ;?></td>
-                                <td class="history__time"><?= timeLeft($rate['date']) ;?></td>
+                                <td class="history__time"><?= ratePostTime($rate['date']) ;?></td>
                             </tr>
                         <?php } ?>
 
