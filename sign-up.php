@@ -67,9 +67,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $user['contacts']
         ]);
 
-        $res = mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_execute($stmt);
 
-        if ($res) {
+        if ($result) {
             header("Location: /index.php");
             exit();
         }
