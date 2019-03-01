@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $file_extension = ($file_type == 'image/jpeg') ? '.jpg' : '.png';
 
-            move_uploaded_file($tmp_name, $config['upload_dir'] . $path);
+            move_uploaded_file($tmp_name, $config['upload_dir'] . $path . $file_extension);
             $product['photo'] = $config['upload_dir'] . $path . $file_extension;
         } else {
             $errors['photo'] = 'Загрузите картинку в формате JPEG или PNG';

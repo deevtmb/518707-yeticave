@@ -57,6 +57,26 @@ function timeLeft($timeEnd)
     return $timeLeft;
 }
 
+/**
+ * Функция возвращает время публикации ставки
+ *
+ * @param $time
+ * @return false|string
+ */
+function ratePostTime($time) {
+    $secsLeft = time() - strtotime($time);
+
+    if ($secsLeft < 3600) {
+        $postTime = (int)gmdate('i', $secsLeft) . ' мин. назад';
+    } elseif ($secsLeft < 86400) {
+        $postTime = gmdate('G', $secsLeft) . ' ч. назад';
+    } else {
+        $postTime = gmdate('j.m.y H:i');
+    }
+
+    return $postTime;
+}
+
 
 /**
  * @param $sql query
