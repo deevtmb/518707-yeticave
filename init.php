@@ -12,5 +12,5 @@ $link = mysqli_connect(
     $config['db']['name']
 );
 
-$categoriesSql = 'SELECT id, name FROM categories';
+$categoriesSql = 'SELECT * FROM categories ORDER BY id ASC';
 $categories = getDataAsArray($link, $categoriesSql);
