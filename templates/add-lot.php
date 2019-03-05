@@ -1,13 +1,5 @@
 <main>
-    <nav class="nav">
-        <ul class="nav__list container">
-            <?php foreach ($categories as $item) { ?>
-                <li class="nav__item">
-                    <a href="pages/all-lots.html"><?=$item['name'];?></a>
-                </li>
-            <?php } ?>
-        </ul>
-    </nav>
+    <?= $categoriesTemplate ;?>
 
     <?php $classname = (isset($errors) && count($errors)) ? 'form--invalid' : '';?>
 

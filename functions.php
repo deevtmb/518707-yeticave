@@ -71,7 +71,7 @@ function ratePostTime($time) {
     } elseif ($secsLeft < 86400) {
         $postTime = gmdate('G', $secsLeft) . ' ч. назад';
     } else {
-        $postTime = gmdate('j.m.y H:i');
+        $postTime = gmdate('d.m.y H:i');
     }
 
     return $postTime;

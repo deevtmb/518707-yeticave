@@ -79,12 +79,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 $pageContent = includeTemplate('sign-up.php', [
     'user' => $user,
     'errors' => $errors,
-    'categories' => $categories
+    'categoriesTemplate' => $categoriesTemplate
 ]);
 
 $layoutContent = includeTemplate('layout.php', [
     'content' => $pageContent,
-    'categories' => $categories,
+    'categoriesTemplate' => $categoriesTemplate,
     'config' => $config
 ]);
 

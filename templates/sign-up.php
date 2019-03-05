@@ -1,13 +1,5 @@
 <main>
-    <nav class="nav">
-        <ul class="nav__list container">
-            <?php foreach ($categories as $item) { ?>
-                <li class="nav__item">
-                    <a href="pages/all-lots.html"><?=$item['name'];?></a>
-                </li>
-            <?php } ?>
-        </ul>
-    </nav>
+    <?= $categoriesTemplate ;?>
 
     <?php $classname = (isset($errors) && count($errors)) ? 'form--invalid' : '';?>
 
@@ -69,6 +61,6 @@
         </div>
         <span class="form__error form__error--bottom">Пожалуйста, исправьте ошибки в форме.</span>
         <button type="submit" class="button">Зарегистрироваться</button>
-        <a class="text-link" href="#">Уже есть аккаунт</a>
+        <a class="text-link" href="login.php">Уже есть аккаунт</a>
     </form>
 </main>

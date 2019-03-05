@@ -17,13 +17,14 @@ CREATE TABLE products (
   date_create TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   date_end TIMESTAMP,
   name CHAR(100),
-  description CHAR(255),
+  description TEXT,
   img_url CHAR(100),
   price INT,
   price_step INT
 );
 
 CREATE INDEX p_name ON products(name);
+CREATE FULLTEXT INDEX products_search ON products(name, description);
 
 CREATE TABLE rates (
   id INT AUTO_INCREMENT PRIMARY KEY,

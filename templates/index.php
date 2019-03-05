@@ -3,9 +3,9 @@
         <h2 class="promo__title">Нужен стафф для катки?</h2>
         <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
         <ul class="promo__list">
-            <?php foreach ($categories as $item) { ?>
-                <li class="promo__item promo__item--boards">
-                    <a class="promo__link" href="pages/all-lots.html"><?=$item['name'];?></a>
+            <?php foreach ($categories as $category) { ?>
+                <li class="promo__item <?= $categoriesIcons[$category['id'] - 1] ;?>">
+                    <a class="promo__link" href="all-lots.php?category_id=<?= $category['id'] ;?>"><?= htmlspecialchars($category['name']) ;?></a>
                 </li>
             <?php } ?>
         </ul>
@@ -15,21 +15,21 @@
             <h2>Открытые лоты</h2>
         </div>
         <ul class="lots__list">
-            <?php foreach ($products as $key => $item) { ?>
+            <?php foreach ($products as $product) { ?>
                 <li class="lots__item lot">
                     <div class="lot__image">
-                        <img src="<?=htmlspecialchars($item['url']);?>" width="350" height="260" alt=<?=htmlspecialchars($item['title']);?>>
+                        <img src="<?= htmlspecialchars($product['url']) ;?>" width="350" height="260" alt="<?= htmlspecialchars($product['title']) ;?>">
                     </div>
                     <div class="lot__info">
-                        <span class="lot__category"><?=htmlspecialchars($item['category']);?></span>
-                        <h3 class="lot__title"><a class="text-link" href="lot.php?id=<?= $item['id'] ;?>"><?=htmlspecialchars($item['title']);?></a></h3>
+                        <span class="lot__category"><?= htmlspecialchars($product['category']) ;?></span>
+                        <h3 class="lot__title"><a class="text-link" href="lot.php?id=<?= $product['id'] ;?>"><?= htmlspecialchars($product['title']) ;?></a></h3>
                         <div class="lot__state">
                             <div class="lot__rate">
-                                <span class="lot__amount">Стартовая цена</span>
-                                <span class="lot__cost"><?= asCurrency($item['price'], $config) ;?></span>
+                                <span class="lot__amount"><?= htmlspecialchars($product['rates'] ? 'Количество ставок: ' . $product['rates'] : 'Стартовая цена') ;?></span>
+                                <span class="lot__cost"><?= asCurrency($product['last_rate'] ?? $product['price'], $config) ;?></span>
                             </div>
                             <div class="lot__timer timer">
-                                <?= htmlspecialchars(timeLeft($item['date_end'])); ?>
+                                <?= htmlspecialchars(timeLeft($product['date_end'])) ;?>
                             </div>
                         </div>
                     </div>

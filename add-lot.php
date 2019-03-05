@@ -67,28 +67,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    var_dump($errors);
     if (count($errors)) {
         $pageContent = includeTemplate('add-lot.php', [
             'product' => $product,
             'errors' => $errors,
+            'categoriesTemplate' => $categoriesTemplate,
             'categories' => $categories
         ]);
 
     } else {
 
-        var_dump($product);
-
         $productAddSql = 'INSERT INTO products 
 (user_id, category_id, date_create, date_end, name, description, img_url, price, price_step) 
-VALUES (2, ?, NOW(), TIMESTAMP(?), ?, ?, ?, ?, ?)';
+VALUES (?, ?, NOW(), TIMESTAMP(?), ?, ?, ?, ?, ?)';
 
         $stmt = db_get_prepare_stmt($link, $productAddSql, [
+            $_SESSION['user']['id'],
             $product['category'],
             $product['end_date'],
             $product['name'],
             $product['description'],
-            $product['photo'] ?? 'img/avatar.jpg',
+            $product['photo'] ?? '',
             $product['price'],
             $product['price_step']
         ]);
@@ -103,19 +102,21 @@ VALUES (2, ?, NOW(), TIMESTAMP(?), ?, ?, ?, ?, ?)';
             $pageContent = includeTemplate('add-lot.php', [
                 'product' => $product,
                 'errors' => $errors,
+                'categoriesTemplate' => $categoriesTemplate,
                 'categories' => $categories
             ]);
         }
     }
 } else {
     $pageContent = includeTemplate('add-lot.php', [
+        'categoriesTemplate' => $categoriesTemplate,
         'categories' => $categories
     ]);
 }
 
 $layoutContent = includeTemplate('layout.php', [
     'content' => $pageContent,
-    'categories' => $categories,
+    'categoriesTemplate' => $categoriesTemplate,
     'config' => $config
 ]);
 

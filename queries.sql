@@ -15,7 +15,7 @@ VALUES
 INSERT INTO products(user_id, winner_id, category_id, date_create, date_end, name, description, img_url, price, price_step)
 VALUES
 (2, NULL, 1, TIMESTAMP('2019-02-02'), TIMESTAMP('2019-03-20'), '2014 Rossignol District Snowboard', 'Отличный борд для каталки', 'img/lot-1.jpg', 10999, 1000),
-(1, NULL, 1, TIMESTAMP('2019-02-05'), TIMESTAMP('2019-04-02'), 'DC Ply Mens 2016/2017 Snowboard', 'Борд в хорошем состоянии', 'img/lot-2.jpg', 159999, 5000),
+(1, NULL, 1, TIMESTAMP('2019-02-05'), TIMESTAMP('2019-04-02'), 'DC Ply Mens 2016/2017 Snowboard', 'Борд в хорошем состоянии', 'img/lot-2.jpg', 15999, 5000),
 (2, NULL, 2, TIMESTAMP('2019-02-12'), TIMESTAMP('2019-03-08'), 'Крепления Union Contact Pro 2015 года размер L/XL', 'Удобные крепления', 'img/lot-3.jpg', 8000, 500),
 (3, NULL, 3, TIMESTAMP('2019-02-15'), TIMESTAMP('2019-04-08'), 'Ботинки для сноуборда DC Mutiny Charocal', 'Потрепаные ботинки', 'img/lot-4.jpg', 10999, 1000),
 (3, NULL, 4, TIMESTAMP('2019-02-20'), TIMESTAMP('2019-03-20'), 'Куртка для сноуборда DC Mutiny Charocal', 'Куртка на пуговицах', 'img/lot-5.jpg', 7500, 300),
@@ -24,8 +24,8 @@ VALUES
 -- Добавление ставок
 INSERT INTO rates(user_id, product_id, date, sum)
 VALUES
-(2, 2, TIMESTAMP('2019-02-07'), 11999),
-(3, 2, TIMESTAMP('2019-02-08'), 13999),
+(2, 2, TIMESTAMP('2019-02-07'), 21999),
+(3, 2, TIMESTAMP('2019-02-08'), 27999),
 (3, 1, TIMESTAMP('2019-02-08'), 31000);
 
 -- Запрос списка категорий
