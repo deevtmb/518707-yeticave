@@ -30,7 +30,6 @@
                         </div>
                     </div>
 
-<!--                    --><?php //if (!count($userRate)) { ;?>
                     <form class="lot-item__form" action="lot.php?id=<?= $product['id'] ;?>" method="post">
 
                         <?php $classname = isset($errors['cost']) ? 'form__item--invalid' : '';?>
@@ -42,7 +41,6 @@
                         </p>
                         <button type="submit" class="button">Сделать ставку</button>
                     </form>
-<!--                    --><?php //} ?>
 
                 </div>
 
