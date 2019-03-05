@@ -14,7 +14,7 @@
             </div>
             <div class="lot-item__right">
 
-                <?php if (isset($_SESSION['user'])) { ;?>
+                <?php if (isset($_SESSION['user']) && !count($userRate) && !count($userProduct)) { ;?>
 
                 <div class="lot-item__state">
                     <div class="lot-item__timer timer">
@@ -30,7 +30,7 @@
                         </div>
                     </div>
 
-                    <?php if (!count($userRate)) { ;?>
+<!--                    --><?php //if (!count($userRate)) { ;?>
                     <form class="lot-item__form" action="lot.php?id=<?= $product['id'] ;?>" method="post">
 
                         <?php $classname = isset($errors['cost']) ? 'form__item--invalid' : '';?>
@@ -42,7 +42,7 @@
                         </p>
                         <button type="submit" class="button">Сделать ставку</button>
                     </form>
-                    <?php } ?>
+<!--                    --><?php //} ?>
 
                 </div>
 

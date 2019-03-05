@@ -79,9 +79,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $productAddSql = 'INSERT INTO products 
 (user_id, category_id, date_create, date_end, name, description, img_url, price, price_step) 
-VALUES (2, ?, NOW(), TIMESTAMP(?), ?, ?, ?, ?, ?)';
+VALUES (?, ?, NOW(), TIMESTAMP(?), ?, ?, ?, ?, ?)';
 
         $stmt = db_get_prepare_stmt($link, $productAddSql, [
+            $_SESSION['user']['id'],
             $product['category'],
             $product['end_date'],
             $product['name'],

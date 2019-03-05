@@ -6,6 +6,7 @@ $errors = [];
 $product = [];
 $rates = [];
 $userRate = [];
+$userProduct = [];
 
 $productId = $_GET['id'] ?? '';
 
@@ -25,8 +26,15 @@ $rates = getDataAsArray($link, $ratesSql, [$productId]);
 $price = count($rates) ? $rates[0]['price'] : $product['price'];
 
 if (isset($_SESSION['user'])) {
-    $userRateSql = "SELECT * FROM rates WHERE user_id = ? AND product_id = ?";
+    $userRateSql = 'SELECT * FROM rates WHERE user_id = ? AND product_id = ?';
     $userRate = getDataAsArray($link, $userRateSql, [
+            $_SESSION['user']['id'],
+            $productId
+        ]
+    );
+
+    $userProductSql = 'SELECT * FROM products WHERE user_id = ? AND id = ?';
+    $userProduct = getDataAsArray($link, $userProductSql, [
             $_SESSION['user']['id'],
             $productId
         ]
@@ -68,6 +76,7 @@ $pageContent = includeTemplate('lot.php', [
     'errors' => $errors,
     'rates' => $rates,
     'userRate' => $userRate,
+    'userProduct' => $userProduct,
     'price' => $price,
     'config' => $config
 ]);
