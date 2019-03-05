@@ -23,14 +23,15 @@ $products = getDataAsArray($link, $productsSql);
 
 $pageContent = includeTemplate('index.php', [
     'products' => $products,
-    'categories' => $categories,
+    'categoriesTemplate' => $categoriesTemplate,
     'categoriesIcons' => $categoriesIcons,
+    'categories' => $categories,
     'config' => $config
 ]);
 
 $layoutContent = includeTemplate('layout.php', [
     'content' => $pageContent,
-    'categories' => $categories,
+    'categoriesTemplate' => $categoriesTemplate,
     'config' => $config
 ]);
 

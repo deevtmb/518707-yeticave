@@ -9,13 +9,13 @@ if (isset($_SESSION['user'])) {
 require('init.php');
 
 $pageContent = includeTemplate('my-lots.php', [
-    'categories' => $categories,
+    'categoriesTemplate' => $categoriesTemplate,
     'config' => $config
 ]);
 
 $layoutContent = includeTemplate('layout.php', [
     'content' => $pageContent,
-    'categories' => $categories,
+    'categoriesTemplate' => $categoriesTemplate,
     'config' => $config
 ]);
 

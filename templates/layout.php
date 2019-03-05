@@ -50,7 +50,7 @@
 </div>
 
 <footer class="main-footer">
-    <?php include('categories.php') ;?>
+    <?= $categoriesTemplate ;?>
     <div class="main-footer__bottom container">
         <div class="main-footer__copyright">
             <p>© 2019, YetiCave</p>

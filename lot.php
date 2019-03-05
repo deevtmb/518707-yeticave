@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 $pageContent = includeTemplate('lot.php', [
-    'categories' => $categories,
+    'categoriesTemplate' => $categoriesTemplate,
     'product' => $product,
     'errors' => $errors,
     'rates' => $rates,
@@ -74,13 +74,13 @@ $pageContent = includeTemplate('lot.php', [
 
 if (!$product || !$productId) {
     $pageContent = includeTemplate('404.php', [
-        'categories' => $categories
+        'categoriesTemplate' => $categoriesTemplate
     ]);
 }
 
 $layoutContent = includeTemplate('layout.php', [
     'content' => $pageContent,
-    'categories' => $categories,
+    'categoriesTemplate' => $categoriesTemplate,
     'config' => $config
 ]);
 

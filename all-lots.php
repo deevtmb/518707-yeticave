@@ -33,6 +33,7 @@ ORDER BY p.id DESC LIMIT ' . $productsPerPage . ' OFFSET ' . $offset;
 }
 
 $pageContent = includeTemplate('all-lots.php', [
+    'categoriesTemplate' => $categoriesTemplate,
     'categories' => $categories,
     'config' => $config,
     'products' => $products,
@@ -43,7 +44,7 @@ $pageContent = includeTemplate('all-lots.php', [
 
 $layoutContent = includeTemplate('layout.php', [
     'content' => $pageContent,
-    'categories' => $categories,
+    'categoriesTemplate' => $categoriesTemplate,
     'config' => $config
 ]);
 

@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 $pageContent = includeTemplate('login.php', [
-    'categories' => $categories,
+    'categoriesTemplate' => $categoriesTemplate,
     'errors' => $errors,
     'userLogin' => $userLogin
 ]);
@@ -51,7 +51,7 @@ $pageContent = includeTemplate('login.php', [
 
 $layoutContent = includeTemplate('layout.php', [
     'content' => $pageContent,
-    'categories' => $categories,
+    'categoriesTemplate' => $categoriesTemplate,
     'config' => $config
 ]);
 

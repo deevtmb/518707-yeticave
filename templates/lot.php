@@ -1,5 +1,5 @@
 <main>
-    <?php include('categories.php') ;?>
+    <?= $categoriesTemplate ;?>
 
     <section class="lot-item container">
 

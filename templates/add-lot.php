@@ -1,5 +1,5 @@
 <main>
-    <?php include('categories.php') ;?>
+    <?= $categoriesTemplate ;?>
 
     <?php $classname = (isset($errors) && count($errors)) ? 'form--invalid' : '';?>
 

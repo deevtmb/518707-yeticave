@@ -1,5 +1,5 @@
 <main>
-    <?php include('categories.php') ;?>
+    <?= $categoriesTemplate ;?>
 
     <section class="rates container">
         <h2>Мои ставки</h2>

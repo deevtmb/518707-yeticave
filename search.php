@@ -36,7 +36,7 @@ ORDER BY p.id DESC LIMIT ' . $productsPerPage . ' OFFSET ' . $offset;
 }
 
 $pageContent = includeTemplate('search.php', [
-    'categories' => $categories,
+    'categoriesTemplate' => $categoriesTemplate,
     'config' => $config,
     'products' => $products,
     'pagesCount' => $pagesCount,
@@ -46,7 +46,7 @@ $pageContent = includeTemplate('search.php', [
 
 $layoutContent = includeTemplate('layout.php', [
     'content' => $pageContent,
-    'categories' => $categories,
+    'categoriesTemplate' => $categoriesTemplate,
     'config' => $config
 ]);
 
