@@ -3,10 +3,8 @@ session_start();
 
 require('init.php');
 
-if (!isset($_SESSION['user'])) {
-    http_response_code(403);
-    exit();
-}
+// Проверка авторизации
+auth();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $product = $_POST;

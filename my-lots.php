@@ -1,10 +1,8 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['user'])) {
-    header("Location: /login.php");
-    exit();
-}
+// Проверка авторизации
+auth();
 
 require('init.php');
 

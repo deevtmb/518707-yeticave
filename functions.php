@@ -81,13 +81,14 @@ function ratePostTime($time) {
 /**
  * Функция для получения массива из БД
  *
- * @param $sql query
- * @param $link database connect
+ * @param $link connect
+ * @param $sql string query
+ * @param $data array params of query
  * @return array|null
  */
 function getDataAsArray($link, $sql, $data = [])
 {
-    if ($link == false) {
+    if ($link === false) {
         print('Ошибка подключения: ' . mysqli_connect_error());
 
     } else {
@@ -110,6 +111,38 @@ function getDataAsArray($link, $sql, $data = [])
 }
 
 /**
+ * Функция для получения одной записи из БД
+ *
+ * @param $link connect
+ * @param $sql string query
+ * @param $data array params of query
+ * @return array|null
+ */
+function getDataAsArrayOne($link, $sql, $data = [])
+{
+    if ($link === false) {
+        print('Ошибка подключения: ' . mysqli_connect_error());
+
+    } else {
+        mysqli_set_charset($link, 'utf8');
+
+        require_once('mysql_helper.php');
+        $stmt = db_get_prepare_stmt($link, $sql, $data);
+
+        mysqli_stmt_execute($stmt);
+
+        $result = mysqli_stmt_get_result($stmt);
+
+        if (!$result) {
+            $error = mysqli_error($link);
+            print("Ошибка MySQL: " . $error);
+        }
+
+        return mysqli_fetch_array($result, MYSQLI_ASSOC);
+    }
+}
+
+/**
  * Проверяет, что переданная дата соответствует формату ГГГГ-ММ-ДД
  *
  * checkdate ( int $month , int $day , int $year )
@@ -120,11 +153,21 @@ function checkDateFormat($date) {
 
     $result = false;
     $regexp = '/(\d{4})\-(\d{2})\-(\d{2})/m';
-    if (preg_match($regexp, $date, $parts) && count($parts) == 4) {
+    if (preg_match($regexp, $date, $parts) && count($parts) === 4) {
         $mounth = $parts[2];
         $day= $parts[3];
         $year = $parts[1];
         $result = checkdate($mounth, $day, $year);
     }
     return $result;
+}
+
+/**
+ * Функция проверяет наличие сессии пользователя
+ */
+function auth () {
+    if (!isset($_SESSION['user'])) {
+        http_response_code(403);
+        exit();
+    }
 }

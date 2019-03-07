@@ -17,8 +17,8 @@ $expiredProducts = getDataAsArray($link, $expiredProductsSql);
 
 if (count($expiredProducts)) {
     foreach ($expiredProducts as $product) {
-        $lastRateSql = mysqli_query($link, 'SELECT sum, user_id FROM rates WHERE product_id = ' . $product['id'] . ' ORDER BY id DESC LIMIT 1');
-        $lastRate = mysqli_fetch_array($lastRateSql, MYSQLI_ASSOC);
+        $lastRateSql = 'SELECT sum, user_id FROM rates WHERE product_id = ? ORDER BY id DESC LIMIT 1';
+        $lastRate = getDataAsArrayOne($link, $lastRateSql, [$product['id']]);
 
         $winnerSetSql = 'UPDATE products SET winner_id = ? WHERE id = ?';
         $stmt = db_get_prepare_stmt($link, $winnerSetSql, [$lastRate['user_id'], $product['id']]);
@@ -27,9 +27,8 @@ if (count($expiredProducts)) {
 
         $winnerSql = 'SELECT p.id AS id, u.name AS name, u.email AS email, p.name AS title
             FROM users u 
-            JOIN products p ON u.id = ' . $lastRate['user_id'];
-        $result = mysqli_query($link, $winnerSql);
-        $winner = mysqli_fetch_array($result, MYSQLI_ASSOC);
+            JOIN products p ON u.id = ?';
+        $winner = getDataAsArrayOne($link, $winnerSql, [$lastRate['user_id']]);
 
         $recipient[$winner['email']] = $winner['name'];
 
