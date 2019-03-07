@@ -5,7 +5,7 @@ require('init.php');
 $errors = [];
 $userLogin = [];
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $userLogin = $_POST;
 
     $required = ['email', 'password'];
@@ -52,7 +52,7 @@ $pageContent = includeTemplate('login.php', [
 $layoutContent = includeTemplate('layout.php', [
     'content' => $pageContent,
     'categoriesTemplate' => $categoriesTemplate,
-    'config' => $config
+    'title' => 'YetiCave - Вход'
 ]);
 
 print($layoutContent);

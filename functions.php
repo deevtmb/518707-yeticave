@@ -52,7 +52,7 @@ function asCurrency($number, $config, $currency = 'rub')
 function timeLeft($timeEnd)
 {
     $secsLeft = strtotime($timeEnd) - time();
-    $timeLeft = gmdate('j ' . 'дн. ' . 'H:i', $secsLeft);
+    $timeLeft = gmdate('z ' . 'дн. ' . 'H:i', $secsLeft);
 
     return $timeLeft;
 }
@@ -79,6 +79,8 @@ function ratePostTime($time) {
 
 
 /**
+ * Функция для получения массива из БД
+ *
  * @param $sql query
  * @param $link database connect
  * @return array|null

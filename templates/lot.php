@@ -14,7 +14,7 @@
             </div>
             <div class="lot-item__right">
 
-                <?php if (isset($_SESSION['user']) && !count($userRate) && !count($userProduct)) { ;?>
+                <?php if (isset($_SESSION['user']) && !count($userRate) && !count($userProduct) && (strtotime($product['date_end']) >= time())) { ;?>
 
                 <div class="lot-item__state">
                     <div class="lot-item__timer timer">

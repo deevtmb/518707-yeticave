@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title><?= $config['site_name'] ?></title>
+    <title><?= $title ?></title>
     <link href="css/normalize.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 </head>
@@ -28,6 +28,7 @@
                 <?php if (isset($_SESSION['user'])) { ?>
                     <div class="user-menu__logged">
                         <p><?= $_SESSION['user']['name']; ?></p>
+                        <a href="my-lots.php">Мои ставки</a>
 
                         <a href="logout.php">Выход</a>
                     </div>

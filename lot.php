@@ -41,7 +41,7 @@ if (isset($_SESSION['user'])) {
     );
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $rate = (int)$_POST['cost'];
 
     if (($price + $product['price_step']) > $rate) {
@@ -90,7 +90,7 @@ if (!$product || !$productId) {
 $layoutContent = includeTemplate('layout.php', [
     'content' => $pageContent,
     'categoriesTemplate' => $categoriesTemplate,
-    'config' => $config
+    'title' => 'YetiCave - Описание лота'
 ]);
 
 print($layoutContent);

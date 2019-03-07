@@ -47,7 +47,7 @@ $pageContent = includeTemplate('search.php', [
 $layoutContent = includeTemplate('layout.php', [
     'content' => $pageContent,
     'categoriesTemplate' => $categoriesTemplate,
-    'config' => $config
+    'title' => 'YetiCave - Поиск'
 ]);
 
 print($layoutContent);

@@ -11,7 +11,7 @@ $pagesCount = 1;
 if ($categoryId) {
     $countSql = 'SELECT COUNT(*) as count FROM products 
 WHERE category_id = ?';
-    $productsPerPage = 9;
+    $productsPerPage = 3;
 
     $productsCount = getDataAsArray($link, $countSql, [$categoryId])[0]['count'];
 
@@ -45,7 +45,7 @@ $pageContent = includeTemplate('all-lots.php', [
 $layoutContent = includeTemplate('layout.php', [
     'content' => $pageContent,
     'categoriesTemplate' => $categoriesTemplate,
-    'config' => $config
+    'title' => 'YetiCave - Лоты по категориям'
 ]);
 
 print($layoutContent);
