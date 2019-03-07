@@ -29,9 +29,9 @@ SELECT p.id as id, p.name as title, description, price, price_step, img_url as u
 FROM products p 
 JOIN categories c ON p.category_id = c.id
 WHERE MATCH(p.name, description) AGAINST(?)
-ORDER BY p.id DESC LIMIT ' . $productsPerPage . ' OFFSET ' . $offset;
+ORDER BY p.id DESC LIMIT ? OFFSET ?';
 
-    $products = getDataAsArray($link, $searchSql, [$search]);
+    $products = getDataAsArray($link, $searchSql, [$search, $productsPerPage, $offset]);
 
 }
 
@@ -47,7 +47,7 @@ $pageContent = includeTemplate('search.php', [
 $layoutContent = includeTemplate('layout.php', [
     'content' => $pageContent,
     'categoriesTemplate' => $categoriesTemplate,
-    'config' => $config
+    'title' => 'YetiCave - Поиск'
 ]);
 
 print($layoutContent);

@@ -25,7 +25,7 @@
                     <?php foreach ($categories as $item) {
                       $selected = '';
                         if (isset($product['category'])) {
-                            if ($product['category'] == $item['id']) {
+                            if ($product['category'] === strval($item['id'])) {
                                 $selected = 'selected';
                             }
                         } ?>
@@ -44,7 +44,7 @@
             <textarea id="message" name="description" placeholder="Напишите описание лота"><?= $value ;?></textarea>
             <span class="form__error"><?= $errors['description']; ?></span>
         </div>
-        <div class="form__item form__item--file"> <!-- form__item--uploaded -->
+        <div class="form__item form__item--file">
             <label>Изображение</label>
             <div class="preview">
                 <button class="preview__remove" type="button">x</button>

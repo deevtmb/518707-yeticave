@@ -3,12 +3,10 @@ session_start();
 
 require('init.php');
 
-if (!isset($_SESSION['user'])) {
-    http_response_code(403);
-    exit();
-}
+// Проверка авторизации
+auth();
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $product = $_POST;
 
     $required = ['name', 'description', 'end_date'];
@@ -46,9 +44,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $finfo = finfo_open(FILEINFO_MIME_TYPE);
         $file_type = finfo_file($finfo, $tmp_name);
 
-        if ($file_type == 'image/jpeg' || $file_type == 'image/png') {
+        if ($file_type === 'image/jpeg' || $file_type === 'image/png') {
 
-            $file_extension = ($file_type == 'image/jpeg') ? '.jpg' : '.png';
+            $file_extension = ($file_type === 'image/jpeg') ? '.jpg' : '.png';
 
             move_uploaded_file($tmp_name, $config['upload_dir'] . $path . $file_extension);
             $product['photo'] = $config['upload_dir'] . $path . $file_extension;
@@ -117,7 +115,7 @@ VALUES (?, ?, NOW(), TIMESTAMP(?), ?, ?, ?, ?, ?)';
 $layoutContent = includeTemplate('layout.php', [
     'content' => $pageContent,
     'categoriesTemplate' => $categoriesTemplate,
-    'config' => $config
+    'title' => 'YetiCave - Добавление лота'
 ]);
 
 print($layoutContent);

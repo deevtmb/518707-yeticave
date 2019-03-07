@@ -2,6 +2,7 @@
 session_start();
 
 require('init.php');
+require('getwinner.php');
 
 $categoriesIcons = [
     'promo__item--boards',
@@ -32,7 +33,7 @@ $pageContent = includeTemplate('index.php', [
 $layoutContent = includeTemplate('layout.php', [
     'content' => $pageContent,
     'categoriesTemplate' => $categoriesTemplate,
-    'config' => $config
+    'title' => 'YetiCave - Главная страница'
 ]);
 
 print($layoutContent);

@@ -1,0 +1,12 @@
+{
+    "name": "deevtmb/yeti-cave",
+    "require": {
+        "swiftmailer/swiftmailer": "^6.1"
+    },
+    "authors": [
+        {
+            "name": "Andrei",
+            "email": "l2.ls@yandex.ru"
+        }
+    ]
+}
