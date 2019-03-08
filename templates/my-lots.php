@@ -37,7 +37,7 @@
                             </div>
                         </td>
                         <td class="rates__price">
-                            <?= htmlspecialchars(['rate']) . ' р';?>
+                            <?= htmlspecialchars($rate['rate']) . ' р';?>
                         </td>
                         <td class="rates__time">
                             <?= htmlspecialchars($rate['rate_date']) ;?>

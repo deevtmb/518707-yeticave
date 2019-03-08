@@ -37,7 +37,7 @@
                         <p class="lot-item__form-item form__item <?= $classname ;?>">
                             <label for="cost">Ваша ставка</label>
                             <input id="cost" type="text" name="cost" placeholder="12 000">
-                            <span class="form__error"><?= $errors['cost'] ;?></span>
+                            <span class="form__error"><?= isset($errors['cost']) ? $errors['cost'] : '';?></span>
                         </p>
                         <button type="submit" class="button">Сделать ставку</button>
                     </form>
@@ -51,9 +51,9 @@
 
                         <?php foreach ($rates as $rate) {?>
                             <tr class="history__item">
-                                <td class="history__name"><?= $rate['user'] ;?></td>
-                                <td class="history__price"><?= $rate['price'] ;?></td>
-                                <td class="history__time"><?= ratePostTime($rate['date']) ;?></td>
+                                <td class="history__name"><?= htmlspecialchars($rate['user']) ;?></td>
+                                <td class="history__price"><?= htmlspecialchars($rate['price']) ;?></td>
+                                <td class="history__time"><?= htmlspecialchars(ratePostTime($rate['date'])) ;?></td>
                             </tr>
                         <?php } ?>
 

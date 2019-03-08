@@ -11,7 +11,7 @@ $pagesCount = 1;
 if ($categoryId) {
     $countSql = 'SELECT COUNT(*) as count FROM products 
 WHERE category_id = ?';
-    $productsPerPage = 3;
+    $productsPerPage = 9;
 
     $productsCount = getDataAsArray($link, $countSql, [$categoryId])[0]['count'];
 
@@ -27,9 +27,9 @@ SELECT p.id as id, p.name as title, description, price, price_step, img_url as u
 FROM products p 
 JOIN categories c ON p.category_id = c.id  
 WHERE category_id = ?
-ORDER BY p.id DESC LIMIT ' . $productsPerPage . ' OFFSET ' . $offset;
+ORDER BY p.id DESC LIMIT ? OFFSET ?';
 
-    $products = getDataAsArray($link, $searchSql, [$categoryId]);
+    $products = getDataAsArray($link, $searchSql, [$categoryId, $productsPerPage, $offset]);
 }
 
 $pageContent = includeTemplate('all-lots.php', [

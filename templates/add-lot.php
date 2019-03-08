@@ -13,7 +13,7 @@
             <div class="form__item <?= $classname; ?>">
                 <label for="lot-name">Наименование</label>
                 <input id="lot-name" type="text" name="name" placeholder="Введите наименование лота" value="<?= $value; ?>" required>
-                <span class="form__error"><?= $errors['name']; ?></span>
+                <span class="form__error"><?= isset($errors['name']) ? $errors['name'] : ''; ?></span>
             </div>
 
             <?php $classname = isset($errors['category']) ? 'form__item--invalid' : '';?>
@@ -32,7 +32,7 @@
                         <option value='<?= $item['id'] ;?>' <?= $selected ;?>><?= $item['name']; ?></option>
                     <?php } ?>
                 </select>
-                <span class="form__error"><?= $errors['category']; ?></span>
+                <span class="form__error"><?= isset($errors['category']) ? $errors['category'] : ''; ?></span>
             </div>
         </div>
 
@@ -42,7 +42,7 @@
         <div class="form__item form__item--wide <?= $classname; ?>">
             <label for="message">Описание</label>
             <textarea id="message" name="description" placeholder="Напишите описание лота"><?= $value ;?></textarea>
-            <span class="form__error"><?= $errors['description']; ?></span>
+            <span class="form__error"><?= isset($errors['description']) ? $errors['description'] : ''; ?></span>
         </div>
         <div class="form__item form__item--file">
             <label>Изображение</label>
@@ -67,7 +67,7 @@
             <div class="form__item form__item--small <?= $classname; ?>">
                 <label for="lot-rate">Начальная цена</label>
                 <input id="lot-rate" type="number" name="price" placeholder="0" value="<?= $value ;?>" required>
-                <span class="form__error"><?= $errors['price']; ?></span>
+                <span class="form__error"><?= isset($errors['price']) ? $errors['price'] : ''; ?></span>
             </div>
 
             <?php $classname = isset($errors['price_step']) ? 'form__item--invalid' : '';
@@ -76,7 +76,7 @@
             <div class="form__item form__item--small <?= $classname ;?>">
                 <label for="lot-step">Шаг ставки</label>
                 <input id="lot-step" type="number" name="price_step" placeholder="0" value="<?= $value ;?>" required>
-                <span class="form__error"><?= $errors['price_step']; ?></span>
+                <span class="form__error"><?= isset($errors['price_step']) ? $errors['price_step'] : ''; ?></span>
             </div>
 
             <?php $classname = isset($errors['end_date']) ? 'form__item--invalid' : '';
@@ -85,7 +85,7 @@
             <div class="form__item <?= $classname ;?>">
                 <label for="lot-date">Дата окончания торгов</label>
                 <input class="form__input-date" id="lot-date" type="date" name="end_date" value="<?= $value ;?>" required>
-                <span class="form__error"><?= $errors['end_date']; ?></span>
+                <span class="form__error"><?= isset($errors['end_date']) ? $errors['end_date'] : ''; ?></span>
             </div>
         </div>
         <span class="form__error form__error--bottom">Пожалуйста, исправьте ошибки в форме.</span>
