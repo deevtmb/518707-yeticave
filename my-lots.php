@@ -1,10 +1,10 @@
 <?php
 session_start();
 
+require('init.php');
+
 // Проверка авторизации
 auth();
-
-require('init.php');
 
 $ratesSql = '
 SELECT p.id as id, img_url as url, winner_id, p.name as title, category_id, date_end, sum as rate, date as rate_date, u.contacts as contacts 
