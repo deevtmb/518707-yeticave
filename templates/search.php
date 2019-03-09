@@ -38,7 +38,7 @@
                 <li class="pagination-item pagination-item-prev"><a href="search.php?search=<?= htmlspecialchars($_GET['search']) ;?>&page=<?= $currentPage === '1' ? $currentPage : $currentPage - 1 ;?>">Назад</a></li>
 
                 <?php foreach ($pages as $page) { ?>
-                    <li class="pagination-item <?= strval($page) == $currentPage ? 'pagination-item-active' : '' ?>">
+                    <li class="pagination-item <?= strval($page) === $currentPage ? 'pagination-item-active' : '' ?>">
                         <a href="search.php?search=<?= htmlspecialchars($_GET['search']) ;?>&page=<?=$page;?>"><?=$page;?></a>
                     </li>
                 <?php } ?>

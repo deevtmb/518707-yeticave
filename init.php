@@ -11,6 +11,11 @@ $link = mysqli_connect(
     $config['db']['name']
 );
 
+if (!$link) {
+    print(includeTemplate('error.php', []));
+    exit();
+}
+
 $categoriesSql = 'SELECT * FROM categories ORDER BY id ASC';
 $categories = getDataAsArray($link, $categoriesSql);
 $categoriesTemplate = includeTemplate(

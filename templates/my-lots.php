@@ -28,7 +28,7 @@
 
                         <?php $value = timeLeft($rate['date_end']);
                         $timerClass = '';
-                        if ($rate['winner_id'] == $_SESSION['user']['id']) {$timerClass = 'timer--win'; $value = 'Ставка выиграла';}
+                        if ($rate['winner_id'] === (int)$_SESSION['user']['id']) {$timerClass = 'timer--win'; $value = 'Ставка выиграла';}
                         else if (strtotime($rate['date_end']) < time()) {$timerClass = 'timer--end'; $value = 'Торги окончены';}
                         else if (strtotime($rate['date_end']) < strtotime('+24 hours')) {$timerClass = 'timer--finishing';} ?>
                         <td class="rates__timer">
