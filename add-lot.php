@@ -53,16 +53,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $errors['photo'] = 'Загрузите картинку в формате JPEG или PNG';
         }
-    }
-
-    if (!checkDateFormat($_POST['end_date'])) {
-        $errors['end_date'] = 'Неверный формат даты';
+    } else {
+        $errors['photo'] = 'Загрузите картинку в формате JPEG или PNG';
     }
 
     if (isset($_POST['end_date'])) {
         if (strtotime('tomorrow') > strtotime($_POST['end_date'])) {
             $errors['end_date'] = 'Минимиум 1 день к текущей дате';
         }
+    }
+
+    if (!checkDateFormat($_POST['end_date'])) {
+        $errors['end_date'] = 'Неверный формат даты';
     }
 
     if (count($errors)) {
@@ -82,7 +84,7 @@ VALUES (?, ?, NOW(), TIMESTAMP(?), ?, ?, ?, ?, ?)';
         $stmt = db_get_prepare_stmt($link, $productAddSql, [
             $_SESSION['user']['id'],
             $product['category'],
-            $product['end_date'],
+            date('Y-m-d', $product['end_date']),
             $product['name'],
             $product['description'],
             $product['photo'] ?? '',

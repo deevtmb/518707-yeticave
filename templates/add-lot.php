@@ -44,7 +44,10 @@
             <textarea id="message" name="description" placeholder="Напишите описание лота"><?= $value ;?></textarea>
             <span class="form__error"><?= isset($errors['description']) ? $errors['description'] : ''; ?></span>
         </div>
-        <div class="form__item form__item--file">
+
+        <?php $classname = isset($errors['photo']) ? 'form__item--invalid' : '';?>
+
+        <div class="form__item form__item--file <?= $classname ;?>">
             <label>Изображение</label>
             <div class="preview">
                 <button class="preview__remove" type="button">x</button>
@@ -58,6 +61,7 @@
                     <span>+ Добавить</span>
                 </label>
             </div>
+            <span class="form__error"><?= isset($errors['photo']) ? $errors['photo'] : '' ;?></span>
         </div>
         <div class="form__container-three">
 

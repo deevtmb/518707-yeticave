@@ -103,7 +103,7 @@ function getDataAsArray($link, $sql, $data = [])
 
         if (!$result) {
             $error = mysqli_error($link);
-            print("Ошибка MySQL: " . $error);
+            print('Ошибка MySQL: ' . $error);
         }
 
         return mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -135,7 +135,7 @@ function getDataAsArrayOne($link, $sql, $data = [])
 
         if (!$result) {
             $error = mysqli_error($link);
-            print("Ошибка MySQL: " . $error);
+            print('Ошибка MySQL: ' . $error);
         }
 
         return mysqli_fetch_array($result, MYSQLI_ASSOC);
@@ -150,6 +150,9 @@ function getDataAsArrayOne($link, $sql, $data = [])
  * @return bool
  */
 function checkDateFormat($date) {
+    if ($date === date('d.m.Y', strtotime($date))) {
+        $date = date('Y-m-d', strtotime($date));
+    }
 
     $result = false;
     $regexp = '/(\d{4})\-(\d{2})\-(\d{2})/m';
